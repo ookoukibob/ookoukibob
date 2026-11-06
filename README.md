@@ -1,15 +1,55 @@
+<div align="center">
+
 # ookoukibob
 
-student. usually making things, breaking them, and then figuring out why.
+<sub>student · amateur musician · professional side-quest collector</sub>
 
-I write software for problems I run into or ideas I can't leave alone. Current rotation: pharmacology, music, and hardware. 🎛️
+<code>薬理 / 音楽 / プログラミング / たまに麻雀</code>
 
-- 🧪 [Neuropharmacology Sandbox](https://github.com/ookoukibob/Neuropharmacology-Sandbox) — a pharmacology calculator that refuses to make up its inputs. Trust issues, but make them scientific.
-- 🥁 [Polyrhythmic Metronome](https://github.com/ookoukibob/polyrhythmic-metronome) — an offline metronome for arbitrary time signatures. 59/16 is a perfectly reasonable life choice.
-- ⌨️ [TextDeck](https://github.com/ookoukibob/TextDeck) — a Windows text input tool powered by SendInput, virtual HID, or an ESP32-S3. Because apparently a keyboard wasn't enough.
+(￣▽￣)ノ
 
-Outside the editor: bass, drums, wind instruments, riichi mahjong, and collecting new distractions.
+<a href="https://x.com/ookoukibob">X</a> · <a href="https://github.com/ookoukibob">GitHub</a>
 
-Occasionally coherent on [X](https://x.com/ookoukibob).
+</div>
 
-`it works on my machine` — famous last words.
+---
+
+### stuff i've made
+
+- 🧪 **[Neuropharmacology Sandbox](https://github.com/ookoukibob/Neuropharmacology-Sandbox)** — pharmacology calculations, PK/PD models, and data provenance.
+- 🥁 **[Polyrhythmic Metronome](https://github.com/ookoukibob/polyrhythmic-metronome)** — an offline metronome for unreasonable time signatures. 59/16 gang.
+- ⌨️ **[TextDeck](https://github.com/ookoukibob/TextDeck)** — Windows text input via SendInput, virtual HID, and ESP32-S3.
+
+### github stats
+
+<div align="center">
+  <img height="165" src="https://github-stats-extended.vercel.app/api?username=ookoukibob&show_icons=true&hide_border=true&theme=tokyonight&bg_color=1a1b27&title_color=bb9af7&icon_color=7aa2f7&text_color=a9b1d6" alt="GitHub stats" />
+  <img height="165" src="https://github-stats-extended.vercel.app/api/top-langs/?username=ookoukibob&layout=compact&langs_count=6&hide_border=true&theme=tokyonight&bg_color=1a1b27&title_color=bb9af7&text_color=a9b1d6" alt="Top languages" />
+  <br />
+  <img src="https://streak-stats.demolab.com?user=ookoukibob&theme=tokyonight&hide_border=true&background=1a1b27&ring=bb9af7&fire=ff9e64&currStreakLabel=bb9af7" alt="GitHub contribution streak" />
+</div>
+
+<sub>Language stats are based on code in public repositories, not a skill ranking. (´・ω・`)</sub>
+
+### things i poke at
+
+<div align="center">
+
+<img src="https://img.shields.io/badge/C%2B%2B-565f89?style=flat-square&logo=cplusplus&logoColor=c0caf5" alt="C++" />
+<img src="https://img.shields.io/badge/Python-565f89?style=flat-square&logo=python&logoColor=c0caf5" alt="Python" />
+<img src="https://img.shields.io/badge/JavaScript-565f89?style=flat-square&logo=javascript&logoColor=c0caf5" alt="JavaScript" />
+<img src="https://img.shields.io/badge/HTML%20%2F%20CSS-565f89?style=flat-square&logo=html5&logoColor=c0caf5" alt="HTML CSS" />
+<img src="https://img.shields.io/badge/Arduino-414868?style=flat-square&logo=arduino&logoColor=9ece6a" alt="Arduino" />
+<img src="https://img.shields.io/badge/ESP32-414868?style=flat-square&logo=espressif&logoColor=9ece6a" alt="ESP32" />
+<img src="https://img.shields.io/badge/Windows-414868?style=flat-square&logo=windows&logoColor=7aa2f7" alt="Windows" />
+<img src="https://img.shields.io/badge/Web_Audio-414868?style=flat-square&logo=webaudio&logoColor=7dcfff" alt="Web Audio" />
+<img src="https://img.shields.io/badge/Pharmacology-414868?style=flat-square&logoColor=bb9af7" alt="Pharmacology" />
+<img src="https://img.shields.io/badge/Music-414868?style=flat-square&logoColor=ff9e64" alt="Music" />
+
+</div>
+
+bass / drums / winds · anime & manga · riichi mahjong · psychopharmacology · random rabbit holes
+
+<div align="center">
+  <sub>まだまだです · (っ˘ω˘ς )</sub>
+</div>
