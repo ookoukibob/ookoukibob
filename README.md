@@ -31,8 +31,6 @@
 
 <sub>Language stats are based on code in public repositories, not a skill ranking. (´・ω・｀)</sub>
 
-### things i poke at
-
 <div align="center">
 
 <img src="https://img.shields.io/badge/C%2B%2B-565f89?style=flat-square&logo=cplusplus&logoColor=c0caf5" alt="C++" />
