@@ -1,6 +1,6 @@
 <div align="center">
 
-# ookoukibob
+# OokoukiBob
 
 <sub>student / amateur musician / serial tinkerer</sub>
 
