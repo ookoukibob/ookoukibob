@@ -2,9 +2,9 @@
 
 # ookoukibob
 
-<sub>student · amateur musician · professional side-quest collector</sub>
+<sub>student / amateur musician / serial tinkerer</sub>
 
-<code>薬理 / 音楽 / プログラミング / たまに麻雀</code>
+<code>pharmacology / music / programming / occasional mahjong</code>
 
 (￣▽￣)ノ
 
@@ -29,7 +29,7 @@
   <img src="https://streak-stats.demolab.com?user=ookoukibob&theme=tokyonight&hide_border=true&background=1a1b27&ring=bb9af7&fire=ff9e64&currStreakLabel=bb9af7" alt="GitHub contribution streak" />
 </div>
 
-<sub>Language stats are based on code in public repositories, not a skill ranking. (´・ω・`)</sub>
+<sub>Language stats are based on code in public repositories, not a skill ranking. (´・ω・｀)</sub>
 
 ### things i poke at
 
@@ -48,8 +48,8 @@
 
 </div>
 
-bass / drums / winds · anime & manga · riichi mahjong · psychopharmacology · random rabbit holes
+bass / drums / winds · anime & manga · riichi mahjong · psychopharmacology · assorted rabbit holes
 
 <div align="center">
-  <sub>まだまだです · (っ˘ω˘ς )</sub>
+  <sub>currently trying not to start another side project · (っ˘ω˘ς )</sub>
 </div>
