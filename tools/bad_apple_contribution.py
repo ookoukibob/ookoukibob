@@ -62,11 +62,97 @@ PALETTES: dict[str, list[tuple[int, int, int]]] = {
 
 LEVEL_THRESHOLDS = (24, 72, 132, 196)
 
+# A cell is a square: the crop must have the grid's aspect ratio, otherwise the
+# subject is squeezed. 53 cells wide / 7 tall is a very wide letterbox, so a 4:3
+# or 16:9 source has to lose vertical field of view -- crop, never squash.
+FIT_MODES = ("crop", "stretch")
+
 
 def build_palette(colors: Sequence[tuple[int, int, int]]) -> list[int]:
     """Return a 256-entry RGB palette suitable for Pillow P-mode images."""
     flat = [channel for color in colors for channel in color]
     return flat + [0] * (768 - len(flat))
+
+
+def find_content_box(bgr_frame: np.ndarray, threshold: int = 20) -> tuple[int, int, int, int]:
+    """Return (x0, x1, y0, y1) of the non-letterbox area of one frame."""
+    gray = cv2.cvtColor(bgr_frame, cv2.COLOR_BGR2GRAY)
+    columns = np.where(gray.max(axis=0) > threshold)[0]
+    rows = np.where(gray.max(axis=1) > threshold)[0]
+    if not columns.size or not rows.size:
+        return 0, gray.shape[1], 0, gray.shape[0]
+    return int(columns.min()), int(columns.max()) + 1, int(rows.min()), int(rows.max()) + 1
+
+
+def probe_geometry(
+    video: Path,
+    *,
+    grid_width: int,
+    grid_height: int,
+    probe_frames: int = 120,
+) -> tuple[int, int, int, int, int]:
+    """Sample the clip once to find the pillarbox and the vertical crop window.
+
+    Returns (x0, x1, band_top, band_height, frame_height). The band keeps the
+    grid aspect ratio and is centred on the temporal median of the subject's
+    dark-mass centroid, so a mostly-still silhouette stays framed without any
+    per-frame tracking jitter.
+    """
+    capture = cv2.VideoCapture(str(video))
+    if not capture.isOpened():
+        raise SystemExit(f"Error: could not open video: {video}")
+
+    frame_height = int(capture.get(cv2.CAP_PROP_FRAME_HEIGHT)) or 0
+    frame_count = int(capture.get(cv2.CAP_PROP_FRAME_COUNT)) or 0
+    stride = max(1, frame_count // probe_frames) if frame_count else 1
+
+    boxes: list[tuple[int, int]] = []
+    centroids: list[float] = []
+    index = 0
+    sampled = 0
+    try:
+        while sampled < probe_frames:
+            ok = capture.grab()
+            if not ok:
+                break
+            if index % stride == 0:
+                ok, frame = capture.retrieve()
+                if ok:
+                    x0, x1, _, _ = find_content_box(frame)
+                    boxes.append((x0, x1))
+                    gray = cv2.cvtColor(frame[:, x0:x1], cv2.COLOR_BGR2GRAY).astype(np.float32)
+                    mass = np.clip(gray.max() - gray, 0, None)
+                    total = float(mass.sum())
+                    if total > 1e-6:
+                        rows = np.arange(mass.shape[0], dtype=np.float32)[:, None]
+                        centroids.append(float((mass * rows).sum() / total))
+                    sampled += 1
+            index += 1
+    finally:
+        capture.release()
+
+    if boxes:
+        x0 = int(np.median([b[0] for b in boxes]))
+        x1 = int(np.median([b[1] for b in boxes]))
+    else:
+        x0, x1 = 0, 0
+    if x1 - x0 < grid_width:
+        x0 = 0
+        x1 = max(x1, int(capture.get(cv2.CAP_PROP_FRAME_WIDTH)) or x1 or grid_width)
+    if not frame_height:
+        frame_height = 480
+
+    content_width = x1 - x0
+    band_height = int(round(content_width * grid_height / grid_width))
+    band_height = max(1, min(band_height, frame_height))
+
+    if centroids:
+        center = float(np.median(centroids))
+        band_top = int(round(center - band_height / 2))
+    else:
+        band_top = (frame_height - band_height) // 2
+    band_top = max(0, min(band_top, frame_height - band_height))
+    return x0, x1, band_top, band_height, frame_height
 
 
 def render_frame(
@@ -79,11 +165,23 @@ def render_frame(
     palette: Sequence[tuple[int, int, int]],
     invert: bool,
     equalize: bool,
+    box: tuple[int, int, int, int] | None = None,
+    fit: str = "crop",
 ) -> Image.Image:
     gray = cv2.cvtColor(bgr_frame, cv2.COLOR_BGR2GRAY)
+
+    if box is not None and fit == "crop":
+        x0, x1, band_top, band_height = box
+        gray = gray[band_top:band_top + band_height, x0:x1]
+    elif box is not None and fit == "stretch":
+        x0, x1, _, _ = box
+        gray = gray[:, x0:x1]
+
     if equalize:
         gray = cv2.equalizeHist(gray)
 
+    # INTER_AREA box-filters each cell, so a cell averages a square region of
+    # the source. A non-uniform source ratio is never stretched into the grid.
     pixels = cv2.resize(gray, (width, height), interpolation=cv2.INTER_AREA)
     if invert:
         pixels = 255 - pixels
@@ -137,6 +235,11 @@ def parse_args() -> argparse.Namespace:
                         help="Invert brightness if the source has a dark subject on a light background")
     parser.add_argument("--no-equalize", action="store_true",
                         help="Disable histogram equalization")
+    parser.add_argument("--fit", choices=FIT_MODES, default="crop",
+                        help="crop keeps cells square and cuts field of view (default); "
+                             "stretch squashes the whole frame into the grid")
+    parser.add_argument("--no-autocrop", action="store_true",
+                        help="Disable automatic pillarbox detection and vertical centring")
     args = parser.parse_args()
 
     if not args.video.is_file():
@@ -187,6 +290,26 @@ def main() -> int:
 
     frames: list[Image.Image] = []
     palette = PALETTES[args.palette]
+
+    box = None
+    if not args.no_autocrop:
+        x0, x1, band_top, band_height, frame_height = probe_geometry(
+            args.video, grid_width=args.width, grid_height=args.height
+        )
+        if args.fit == "crop":
+            box = (x0, x1, band_top, band_height)
+            print(
+                f"Auto-crop: pillarbox {x0}..{x1} ({x1 - x0}px), "
+                f"band y={band_top}..{band_top + band_height} "
+                f"of {frame_height}px -> square cells, no squashing."
+            )
+        else:
+            box = (x0, x1, 0, frame_height)
+            print(
+                f"Auto-crop: pillarbox {x0}..{x1} ({x1 - x0}px); "
+                f"--fit {args.fit} stretches the frame into {args.width}x{args.height}."
+            )
+
     print(
         f"Reading {args.video} ({source_fps:.3f} fps); "
         f"sampling at {args.fps:g} fps into {args.width}x{args.height} cells..."
@@ -213,6 +336,8 @@ def main() -> int:
                         palette=palette,
                         invert=args.invert,
                         equalize=not args.no_equalize,
+                        box=box,
+                        fit=args.fit,
                     )
                 )
                 next_sample_index += source_step
@@ -226,18 +351,25 @@ def main() -> int:
         return 2
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    frame_duration_ms = max(1, int(round(1000.0 / args.fps)))
+    # GIF stores delays in centiseconds, so a fixed non-integer delay drifts.
+    # Alternate the two neighbouring centisecond values to keep the mean period
+    # equal to 1 / fps; otherwise 8 fps silently becomes 120 ms (8.33 fps).
+    duration_cs = [0] * len(frames)
+    for i in range(len(frames)):
+        duration_cs[i] = int(round(100.0 * (i + 1) / args.fps)) - int(
+            round(100.0 * i / args.fps)
+        )
     frames[0].save(
         args.output,
         save_all=True,
         append_images=frames[1:],
-        duration=frame_duration_ms,
+        duration=[max(1, cs) * 10 for cs in duration_cs],
         loop=0,
         optimize=True,
         disposal=2,
     )
 
-    actual_duration = len(frames) / args.fps
+    actual_duration = sum(max(1, cs) * 10 for cs in duration_cs) / 1000.0
     size_mb = args.output.stat().st_size / (1024 * 1024)
     print(
         f"Created {args.output} | {len(frames)} frames | "

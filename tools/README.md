@@ -25,6 +25,26 @@ For a monochrome Bad Apple look, use `--palette mono`. The default output
 grid is 53 columns by 7 rows, matching the proportions of GitHub's activity
 graph. The GIF loops forever and is silent.
 
+## Framing
+
+The grid is 53 × 7, a 7.57:1 letterbox, while most source videos are 4:3 or
+16:9. Scaling the whole frame into the grid would divide by roughly 5.7
+vertically but only 1.2 horizontally, so every subject gets flattened. By
+default the tool therefore **crops** instead of squashing:
+
+- A pillarbox/letterbox detector finds the real content rectangle from median
+  frame edges, so black bars never eat grid cells.
+- A band with exactly the grid's aspect ratio is cut from the content and
+  centred on the temporal median of the subject's dark-mass centroid.
+- Each cell then box-filters a genuinely square source region.
+
+Use `--fit stretch` for the old squash-the-whole-frame behaviour, and
+`--no-autocrop` to use the full frame without any detection.
+
+GIF timestamps are centiseconds, so `--fps 8` cannot be an exact 125 ms. The
+writer alternates 120/130 ms so the mean period stays 1/fps and long clips do
+not drift against the source.
+
 Useful options:
 
 - `--start 20 --duration 30`: convert a 30-second segment starting at 20s.
