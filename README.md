@@ -42,7 +42,7 @@
 <img src="https://img.shields.io/badge/Arduino-414868?style=flat-square&logo=arduino&logoColor=9ece6a" alt="Arduino" />
 <img src="https://img.shields.io/badge/ESP32-414868?style=flat-square&logo=espressif&logoColor=9ece6a" alt="ESP32" />
 <img src="https://img.shields.io/badge/Windows-414868?style=flat-square&logo=windows&logoColor=7aa2f7" alt="Windows" />
-<img src="https://img.shields.io/badge/Web_Audio-414868?style=flat-square&logo=webaudio&logoColor=7dcfff" alt="Web Audio" />
+<img src="https://img.shields.io/badge/Web_Audio-414868?style=flat-square" alt="Web Audio" />
 <img src="https://img.shields.io/badge/Pharmacology-414868?style=flat-square&logoColor=bb9af7" alt="Pharmacology" />
 <img src="https://img.shields.io/badge/Music-414868?style=flat-square&logoColor=ff9e64" alt="Music" />
 
@@ -51,5 +51,5 @@
 bass / drums / winds · anime & manga · riichi mahjong · psychopharmacology · assorted rabbit holes
 
 <div align="center">
-  <sub>currently trying not to start another side project · (っ˘ω˘ς )</sub>
+  <sub>(っ˘ω˘ς )</sub>
 </div>
