@@ -19,8 +19,8 @@
 ### bad apple!!
 
 <img src="assets/bad-apple-contribution.gif" alt="Bad Apple animated in a GitHub contribution grid" width="686" />
-
-<sub>218 seconds of <i>Bad Apple!!</i> decoded into a 53 × 7 contribution grid · <a href="tools/bad_apple_contribution.py">generator</a></sub>
+ 
+<sub><a href="tools/bad_apple_contribution.py">generator</a></sub>
 
 </div>
 
