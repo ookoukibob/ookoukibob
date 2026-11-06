@@ -8,7 +8,7 @@
 
 (￣▽￣)ノ
 
-<a href="https://x.com/ookoukibob">X</a> · <a href="https://github.com/ookoukibob">GitHub</a>
+<a href="https://github.com/ookoukibob">GitHub</a>
 
 </div>
 
