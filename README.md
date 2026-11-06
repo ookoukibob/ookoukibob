@@ -44,7 +44,7 @@
 <img src="https://img.shields.io/badge/Python-565f89?style=flat-square&logo=python&logoColor=c0caf5" alt="Python" />
 <img src="https://img.shields.io/badge/JavaScript-565f89?style=flat-square&logo=javascript&logoColor=c0caf5" alt="JavaScript" />
 <img src="https://img.shields.io/badge/HTML%20%2F%20CSS-565f89?style=flat-square&logo=html5&logoColor=c0caf5" alt="HTML CSS" />
-<img src="https://img.shields.io/badge/Arduino-414868?style=flat-square&logo=arduino&logoColor=9ece9a" alt="Arduino" />
+<img src="https://img.shields.io/badge/Arduino-414868?style=flat-square&logo=arduino&logoColor=c0f5" alt="Arduino" />
 <img src="https://img.shields.io/badge/ESP32-414868?style=flat-square&logo=espressif&logoColor=9ece6a" alt="ESP32" />
 <img src="https://img.shields.io/badge/Windows-414868?style=flat-square&logo=windows&logoColor=7aa2f7" alt="Windows" />
 <img src="https://img.shields.io/badge/Web_Audio-414868?style=flat-square" alt="Web Audio" />
