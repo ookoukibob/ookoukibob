@@ -20,7 +20,7 @@
 
 <img src="assets/bad-apple-contribution.gif" alt="Bad Apple animated in a GitHub contribution grid" width="686" />
  
-<sub><a href="tools/bad_apple_contribution.py">generator</a></sub>
+<sub><a href="https://github.com/ookoukibob/Contribution-Grid-GIF">generator</a></sub>
 
 </div>
 
