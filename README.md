@@ -23,8 +23,8 @@
 
 ### stuff i've made
 
-- 🧪 **[Neuropharmacology Sandbox](https://github.com/ookoukibob/Neuropharmacology-Sandbox)** — pharmacology calculations, PK/PD models, and data provenance.
-- 🥁 **[Polyrhythmic Metronome](https://github.com/ookoukibob/polyrhythmic-metronome)** — an offline metronome for unreasonable time signatures.
+- 🧪 **[Neuropharmacology Sandbox](https://github.com/ookoukibob/Neuropharmacology-Sandbox)** · [Live Demo](https://neuropharmacology-sandbox.pages.dev/) — pharmacology calculations, PK/PD models, and data provenance.
+- 🥁 **[Polyrhythmic Metronome](https://github.com/ookoukibob/polyrhythmic-metronome)** · [Live Demo](https://polyrhythmic-metronome.pages.dev/) — an offline metronome for unreasonable time signatures.
 - ⌨️ **[TextDeck](https://github.com/ookoukibob/TextDeck)** — Windows text input via SendInput, virtual HID, and ESP32-S3.
 
 ### github stats
@@ -44,7 +44,7 @@
 <img src="https://img.shields.io/badge/Python-565f89?style=flat-square&logo=python&logoColor=c0caf5" alt="Python" />
 <img src="https://img.shields.io/badge/JavaScript-565f89?style=flat-square&logo=javascript&logoColor=c0caf5" alt="JavaScript" />
 <img src="https://img.shields.io/badge/HTML%20%2F%20CSS-565f89?style=flat-square&logo=html5&logoColor=c0caf5" alt="HTML CSS" />
-<img src="https://img.shields.io/badge/Arduino-414868?style=flat-square&logo=arduino&logoColor=9ece6a" alt="Arduino" />
+<img src="https://img.shields.io/badge/Arduino-414868?style=flat-square&logo=arduino&logoColor=9ece9a" alt="Arduino" />
 <img src="https://img.shields.io/badge/ESP32-414868?style=flat-square&logo=espressif&logoColor=9ece6a" alt="ESP32" />
 <img src="https://img.shields.io/badge/Windows-414868?style=flat-square&logo=windows&logoColor=7aa2f7" alt="Windows" />
 <img src="https://img.shields.io/badge/Web_Audio-414868?style=flat-square" alt="Web Audio" />
