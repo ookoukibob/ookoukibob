@@ -27,7 +27,7 @@
 ### stuff i've made
 
 - 🧪 **[Neuropharmacology Sandbox](https://github.com/ookoukibob/Neuropharmacology-Sandbox)** — pharmacology calculations, PK/PD models, and data provenance.
-- 🥁 **[Polyrhythmic Metronome](https://github.com/ookoukibob/polyrhythmic-metronome)** — an offline metronome for unreasonable time signatures. 59/16 gang.
+- 🥁 **[Polyrhythmic Metronome](https://github.com/ookoukibob/polyrhythmic-metronome)** — an offline metronome for unreasonable time signatures.
 - ⌨️ **[TextDeck](https://github.com/ookoukibob/TextDeck)** — Windows text input via SendInput, virtual HID, and ESP32-S3.
 
 ### github stats
