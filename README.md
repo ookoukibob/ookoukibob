@@ -48,7 +48,6 @@
 
 </div>
 
-bass / drums / winds · anime & manga · riichi mahjong · psychopharmacology · assorted rabbit holes
 
 <div align="center">
   <sub>(っ˘ω˘ς )</sub>
