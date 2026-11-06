@@ -7,9 +7,6 @@
 <code>pharmacology / music / programming / occasional mahjong</code>
 
 (￣▽￣)ノ
-
-<a href="https://github.com/ookoukibob">GitHub</a>
-
 </div>
 
 ---
